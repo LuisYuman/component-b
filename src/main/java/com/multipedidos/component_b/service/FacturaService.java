@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import com.multipedidos.multipedidos_common.OperacionesNegocio;
+
 @Service
 public class FacturaService {
 
@@ -28,6 +30,15 @@ public class FacturaService {
         if (repo.existsByNumero(factura.getNumero())) {
             throw new RuntimeException("El número de factura ya existe");
         }
+
+        double subtotal = factura.getMontoTotal();
+
+        double totalConIva = OperacionesNegocio.calcularTotalConIVA(subtotal);
+
+        if (subtotal > 1000) {
+            totalConIva = OperacionesNegocio.aplicarDescuento(totalConIva, 10.0);
+        }
+
         return repo.save(factura);
     }
 

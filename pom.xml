@@ -59,6 +59,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Dependencia del módulo común -->
+		<dependency>
+			<groupId>com.multipedidos</groupId>
+			<artifactId>multipedidos-common</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
